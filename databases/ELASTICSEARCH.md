@@ -99,3 +99,39 @@ install and run kibana
 sudo docker pull "${ES_KIBANA_DOCKER_IMAGE}"
 sudo docker run -d --net=host -v "${ES_KIBANA_CONFIG_DIR}:/usr/share/kibana/config" --name "${ES_KIBANA_DOCKER_NAME}" "docker.elastic.co/kibana/kibana:5.2.2"
 ```
+
+## importing data
+
+install elasticdump
+
+```
+sudo apt-get install nodejs npm
+sudo npm install -g elasticdump
+sudo ln -s /usr/bin/nodejs /usr/bin/node
+```
+
+find out the input and output elasticsearch instance urls and index name
+
+you can use a command like this to find out which indices are available `curl http://localhost:9200/_cat/indices`
+
+set some environment variables we will use in later commands
+
+```
+export INPUT_ES_INDEX_URL="http://remote.host:9200/remote_index_name"
+export OUTPUT_ES_INDEX_URL="http://localhost:9200/local_index_name"
+```
+
+make sure you have access to both elasticsearch instances
+
+```
+curl $INPUT_ES_INDEX_URL
+curl $OUTPUT_ES_INDEX_URL
+```
+
+run the import (depending on what you want to do, see elasticdump documentation for details)
+
+```
+elasticdump --input=${INPUT_ES_INDEX_URL} --output=${OUTPUT_ES_INDEX_URL} --type=analyzer
+elasticdump --input=${INPUT_ES_INDEX_URL} --output=${OUTPUT_ES_INDEX_URL} --type=mapping
+elasticdump --input=${INPUT_ES_INDEX_URL} --output=${OUTPUT_ES_INDEX_URL} --type=data
+```
