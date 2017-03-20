@@ -135,3 +135,29 @@ elasticdump --input=${INPUT_ES_INDEX_URL} --output=${OUTPUT_ES_INDEX_URL} --type
 elasticdump --input=${INPUT_ES_INDEX_URL} --output=${OUTPUT_ES_INDEX_URL} --type=mapping
 elasticdump --input=${INPUT_ES_INDEX_URL} --output=${OUTPUT_ES_INDEX_URL} --type=data
 ```
+
+## re-indexing
+
+you can use the same importing process to do reindexing of existing data
+
+before you start you should create the new index with new mapping
+
+you will have to create a new index, and then point your app to the new index
+
+if this is a problem, you should consider create an alias which will point to the latest index
+
+you can use the dbs-back scripts/elasticsearch_create_index.py command to create a new index
+
+```
+(dbs-back) dbs-back$ scripts/elasticsearch_create_index.py --index new_index_name
+```
+
+make sure new data is not written to the old index (if it's important to prevent data inconsistencies)
+
+you can use elasticdump to copy over the data to the new index:
+
+```
+export INPUT_ES_INDEX_URL="http://localhost:9200/old_index"
+export OUTPUT_ES_INDEX_URL="http://localhost:9200/new_index"
+elasticdump --input=${INPUT_ES_INDEX_URL} --output=${OUTPUT_ES_INDEX_URL} --type=data
+```
