@@ -1,6 +1,6 @@
 # BHP MSSQL database
 
-## get data about specific tree
+## get persons / family trees data
 ```sql
 with
 unitFileAttac as (
@@ -68,6 +68,16 @@ FROM
     v with (nolock)
     JOIN dbo.GenTree gt with (nolock) on  gt.GenTreeId=v.UnitId
     LEFT JOIN GenTreeReportStatus gtrs with (nolock) on gtrs.GenTreeId=gt.GenTreeId
-WHERE gt.GenTreeNumber = TREE_NUMBER
+WHERE
+
+   -- by specific tree number
+   gt.GenTreeNumber = TREE_NUMBER
+   
+   -- all persons which are allowed to show
+   -- v.StatusDesc = 'Completed' AND v.RightsDesc = 'Full' AND v.DisplayStatusDesc != 'Internal Use'
+   
+   -- all persons not allowed to show
+   -- NOT (v.StatusDesc = 'Completed' AND v.RightsDesc = 'Full' AND v.DisplayStatusDesc != 'Internal Use')
+   
 ;
 ```
