@@ -15,5 +15,6 @@ This repository will contain documentation about how the components interact and
 
 ## Table of contents
 
+* [Product roadmap](/PRODUCT_ROADMAP.md)
 * [DevOps documentation](/DEVOPS.md)
 * [Databases project elasticsearch](/databases/ELASTICSEARCH.md)
