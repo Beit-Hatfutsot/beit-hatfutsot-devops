@@ -97,7 +97,7 @@ install and run kibana
 
 ```
 sudo docker pull "${ES_KIBANA_DOCKER_IMAGE}"
-sudo docker run -d --net=host -v "${ES_KIBANA_CONFIG_DIR}:/usr/share/kibana/config" --name "${ES_KIBANA_DOCKER_NAME}" "docker.elastic.co/kibana/kibana:5.2.2"
+sudo docker run -d --net=host -v "${ES_KIBANA_CONFIG_DIR}:/usr/share/kibana/config" --name "${ES_KIBANA_DOCKER_NAME}" "${ES_KIBANA_DOCKER_IMAGE}"
 ```
 
 ## importing data
