@@ -83,7 +83,7 @@ kibana environment variables
 
 ```
 export ES_KIBANA_DOCKER_NAME="dev-kibana"
-export ES_EXPOSED_PORT="9200"
+export ES_KIBANA_DOCKER_IMAGE="docker.elastic.co/kibana/kibana:5.2.2"
 export ES_KIBANA_CONFIG_DIR="/data/bh-dev-es/kibana-config"
 ```
 
