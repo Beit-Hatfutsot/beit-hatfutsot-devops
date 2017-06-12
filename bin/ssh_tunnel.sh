@@ -10,11 +10,11 @@ else
     APP="${1}"
     ENVIRONMENT_NAME="${2}"
     if [ "${ENVIRONMENT_NAME}" == "prod" ] && [ "${APP}" == "elasticsearch" ]; then
-        GCLOUD_HOST="mongo1-dev"
+        GCLOUD_HOST="bhs-prod-db"
         REMOTE_PORT="9200"
         LOCAL_PORT="29200"
     elif [ "${ENVIRONMENT_NAME}" == "prod" ] && [ "${APP}" == "kibana" ]; then
-        GCLOUD_HOST="mongo1-dev"
+        GCLOUD_HOST="bhs-prod-db"
         REMOTE_PORT="5601"
         LOCAL_PORT="25601"
     elif [ "${ENVIRONMENT_NAME}" == "dev" ] && [ "${APP}" == "elasticsearch" ]; then
