@@ -138,6 +138,8 @@ elasticdump --input=${INPUT_ES_INDEX_URL} --output=${OUTPUT_ES_INDEX_URL} --type
 
 ## re-indexing
 
+see https://github.com/Beit-Hatfutsot/dbs-back/blob/dev/README.md#reindexing-elasticsearch
+
 you can use the same importing process to do reindexing of existing data
 
 before you start you should create the new index with new mapping
