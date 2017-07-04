@@ -32,6 +32,12 @@ This assumes you didn't override any app configurations, so it will use default 
 
 If you use a different index or Elasticsearch is running elsewhere, use the --index and --host arguments to modify the defaults.
 
+To recreate the index, for development you can just drop the old index and re-create, e.g.:
+
+```
+curl localhost:9200/bhdata -X DELETE
+```
+
 ## mojp-dbs-pipelines
 
 * follow the [Contributing Guide](https://github.com/Beit-Hatfutsot/mojp-dbs-pipelines/blob/master/CONTRIBUTING.md)
