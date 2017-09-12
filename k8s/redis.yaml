@@ -1,0 +1,22 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata: {name: "redis"}
+spec:
+  replicas: 1
+  strategy: {type: "Recreate"}
+  template:
+    metadata: {labels: {app: "redis"}}
+    spec:
+      containers:
+      - name: redis
+        image: redis
+        ports: [{containerPort: 6379}]
+        resources: {requests: {cpu: "1m"}}
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata: {name: "redis"}
+spec:
+  selector: {app: "redis"}
+  ports: [{name: "6379", port: 6379}]
