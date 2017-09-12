@@ -1,0 +1,25 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata: {name: "front"}
+spec:
+  replicas: 1
+  strategy: {type: "Recreate"}
+  template:
+    metadata: {labels: {app: "front"}}
+    spec:
+      containers:
+      - name: front
+        image: orihoch/mojp-dbs-front
+        ports: [{containerPort: 80}]
+        resources: {requests: {cpu: "20m"}}
+        # each secret's key will be a filename under /etc/bhs
+        volumeMounts: [{name: "etc-bhs", mountPath: "/etc/bhs", readOnly: true}]
+      restartPolicy: Always
+      volumes: [{name: "etc-bhs", secret: {secretName: "etc-bhs"}}]
+---
+apiVersion: v1
+kind: Service
+metadata: {name: "front"}
+spec:
+  selector: {app: "front"}
+  ports: [{name: "80", port: 80}]

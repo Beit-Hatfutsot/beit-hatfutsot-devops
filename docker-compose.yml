@@ -1,0 +1,15 @@
+version: '3.2'
+
+services:
+
+  back:
+    image: orihoch/mojp-dbs-back
+
+  front:
+    image: orihoch/mojp-dbs-front
+
+  nginx:
+    depends_on: ["back", "front"]
+    build: ./databases/nginx
+    image: orihoch/mojp-dbs-nginx
+    ports: ["80:80", "443:443"]

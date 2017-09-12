@@ -1,0 +1,23 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata: {name: "nginx"}
+spec:
+  replicas: 1
+  strategy: {type: "Recreate"}
+  template:
+    metadata: {labels: {app: "nginx"}}
+    spec:
+      containers:
+      - name: nginx
+        image: orihoch/mojp-dbs-nginx
+        resources: {requests: {cpu: "20m"}}
+        ports: [{containerPort: 80}, {containerPort: 443}]
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata: {name: "nginx"}
+spec:
+  type: LoadBalancer
+  selector: {app: "nginx"}
+  ports: [{name: "80", port: 80}, {name: "443", port: 443}]
