@@ -3,18 +3,17 @@ kind: Deployment
 metadata: {name: "back"}
 spec:
   replicas: 1
-  strategy: {type: "Recreate"}
   template:
     metadata: {labels: {app: "back"}}
     spec:
       containers:
       - name: back
-        image: orihoch/mojp-dbs-back
+        # https://github.com/Beit-Hatfutsot/dbs-back/releases/tag/v0.14.0
+        image: gcr.io/bh-org-01/mojp-dbs-back:b56d744971e4f142fac54dcf3a1eda71b14812ee
         ports: [{containerPort: 80}, {containerPort: 8081}]
         resources: {requests: {cpu: "20m"}}
         # each secret's key will be a filename under /etc/bhs
         volumeMounts: [{name: "etc-bhs", mountPath: "/etc/bhs", readOnly: true}]
-      restartPolicy: Always
       volumes: [{name: "etc-bhs", secret: {secretName: "etc-bhs"}}]
 ---
 apiVersion: v1
@@ -22,4 +21,8 @@ kind: Service
 metadata: {name: "back"}
 spec:
   selector: {app: "back"}
-  ports: [{name: "80", port: 80}, {name: "8081", port: 8081}]
+  ports:
+  # api
+  - {name: "80", port: 80}
+  # api documentation
+  - {name: "8081", port: 8081}

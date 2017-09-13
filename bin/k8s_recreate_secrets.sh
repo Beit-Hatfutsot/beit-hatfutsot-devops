@@ -3,7 +3,7 @@
 "${BEIT_HATFUTSOT_DEVOPS_DIR:-`pwd`}/bin/k8s_connect.sh"
 
 if [ ! -f app_server.yaml ] || [ ! -f front-nginx-prerender.conf ]; then
-    echo "you must get these files: app_server.yaml, front-nginx-prerender.conf"
+    echo "you must create these files: app_server.yaml, front-nginx-prerender.conf"
     exit 1
 else
     kubectl delete secret etc-bhs

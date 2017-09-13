@@ -1,0 +1,37 @@
+secret_key: CHANGEME
+frontend_server: "dbs.bh.org.il"
+log_file: "/var/log/bhs/flask.log"
+
+# Mail server
+mail_server: 'CHANGEME'
+mail_port: CHANGEME
+mail_username: 'CHANGEME'
+mail_password: 'CHANGEME'
+# DB Config
+data_db_host: mongo1
+data_db_port: 27017
+data_db_name: mojp-live
+
+user_db_host: mongo1
+user_db_port: 27017
+user_db_name: mojp-live-user
+
+elasticsearch_host: bhs-prod-db
+elasticsearch_data_index: mojp-prod
+
+# Email config
+email_username: CHANGEME
+email_password: CHANGEME
+email_from: CHANGEME
+
+# Bucket urls
+image_bucket: bhs-flat-pics
+thumbnail_bucket: bhs-thumbnails
+ftree_bucket_url: https://storage.googleapis.com/bhs-familytrees
+video_bucket_url: https://storage.googleapis.com/bhs-movies
+
+# redis
+redis_host: redis
+redis_port: 6379
+caching_ttl: 3600
+opencage_key: CHANGEME

@@ -3,7 +3,6 @@ kind: Deployment
 metadata: {name: "redis"}
 spec:
   replicas: 1
-  strategy: {type: "Recreate"}
   template:
     metadata: {labels: {app: "redis"}}
     spec:
@@ -12,7 +11,6 @@ spec:
         image: redis
         ports: [{containerPort: 6379}]
         resources: {requests: {cpu: "1m"}}
-      restartPolicy: Always
 ---
 apiVersion: v1
 kind: Service

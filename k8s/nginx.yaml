@@ -3,16 +3,14 @@ kind: Deployment
 metadata: {name: "nginx"}
 spec:
   replicas: 1
-  strategy: {type: "Recreate"}
   template:
     metadata: {labels: {app: "nginx"}}
     spec:
       containers:
       - name: nginx
-        image: orihoch/mojp-dbs-nginx
+        image: gcr.io/bh-org-01/mojp-dbs-nginx:93d7fb97bff58fd61892a90f4f8c2edf7c7b1259
         resources: {requests: {cpu: "20m"}}
         ports: [{containerPort: 80}, {containerPort: 443}]
-      restartPolicy: Always
 ---
 apiVersion: v1
 kind: Service
