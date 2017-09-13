@@ -1,0 +1,35 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: letsencrypt
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: letsencrypt
+    spec:
+      containers:
+      - name: letsencrypt
+        # https://github.com/OriHoch/datapackage-pipelines-plus-plus/tree/master/devops/letsencrypt
+        image: orihoch/datapackage-pipelines-plus-plus-letsencrypt:v0.0.1
+        resources:
+          requests:
+            cpu: 1m
+        volumeMounts:
+        - name: letsencrypt-log
+          mountPath: /var/log/letsencrypt
+        - name: letsencrypt-etc
+          mountPath: /etc/letsencrypt
+        - name: nginx-html
+          mountPath: /nginx-html
+      volumes:
+      - name: nginx-html
+        hostPath:
+          path: /var/mojp/nginx-html
+      - name: letsencrypt-etc
+        hostPath:
+          path: /var/mojp/letsencrypt-etc
+      - name: letsencrypt-log
+        hostPath:
+          path: /var/mojp/letsencrypt-log
