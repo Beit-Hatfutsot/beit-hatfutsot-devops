@@ -1,0 +1,13 @@
+
+cache:
+  directories:
+  - "$HOME/google-cloud-sdk/"
+
+install:
+- bin/travis_install.sh
+
+deploy:
+  provider: script
+  script: bin/travis_deploy.sh
+  on:
+    branch: master
