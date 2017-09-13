@@ -2,12 +2,5 @@ language: bash
 cache:
   directories:
   - "$HOME/google-cloud-sdk/"
-install:
-- bin/travis_install.sh
-test:
-- true
-deploy:
-  provider: script
-  script: bin/travis_deploy.sh
-  on:
-    branch: master
+script:
+- bin/travis_script.sh
