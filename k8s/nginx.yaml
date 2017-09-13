@@ -8,9 +8,25 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: gcr.io/bh-org-01/mojp-dbs-nginx:93d7fb97bff58fd61892a90f4f8c2edf7c7b1259
+        image: gcr.io/bh-org-01/mojp-dbs-nginx:a6a285fd95b994774aed64bdb4330ce5aee7d1b6
         resources: {requests: {cpu: "20m"}}
         ports: [{containerPort: 80}, {containerPort: 443}]
+        volumeMounts:
+        - name: nginx-html
+          mountPath: /usr/share/nginx/html
+        - name: nginx-conf-d
+          mountPath: /etc/nginx/conf.d
+        - name: letsencrypt-etc
+          mountPath: /letsencrypt-etc
+      volumes:
+      - name: nginx-html
+        hostPath:
+          path: /var/mojp/nginx-html
+      - name: nginx-conf-d
+        configMap: {name: "nginx-conf-d"}
+      - name: letsencrypt-etc
+        hostPath:
+          path: /var/mojp/letsencrypt-etc
 ---
 apiVersion: v1
 kind: Service
