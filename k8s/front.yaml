@@ -8,8 +8,8 @@ spec:
     spec:
       containers:
       - name: front
-        # https://github.com/Beit-Hatfutsot/dbs-front/releases/tag/0.14.0
-        image: gcr.io/bh-org-01/mojp-dbs-front:25674d9cddcf97db385a6a15ea53ab5287893c3a
+        # dbs-front draft release 0.14.1
+        image: gcr.io/bh-org-01/mojp-dbs-front:0fc24279f06f61bbf09157b33a29f2ac1f4fd2cd
         ports: [{containerPort: 80}]
         resources: {requests: {cpu: "20m"}}
         # each secret's key will be a filename under /etc/bhs
