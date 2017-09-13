@@ -1,37 +1,38 @@
 apiVersion: apps/v1beta1
 kind: Deployment
-metadata: {name: "nginx"}
+metadata: {name: nginx}
 spec:
   replicas: 1
   template:
-    metadata: {labels: {app: "nginx"}}
+    metadata:
+      labels: {app: nginx}
     spec:
       containers:
-      - name: nginx
-        image: gcr.io/bh-org-01/mojp-dbs-nginx:a6a285fd95b994774aed64bdb4330ce5aee7d1b6
-        resources: {requests: {cpu: "20m"}}
-        ports: [{containerPort: 80}, {containerPort: 443}]
+      - image: gcr.io/bh-org-01/mojp-dbs-nginx:a6a285fd95b994774aed64bdb4330ce5aee7d1b6
+        name: nginx
+        ports:
+        - {containerPort: 80}
+        - {containerPort: 443}
+        resources:
+          requests: {cpu: 20m}
         volumeMounts:
-        - name: nginx-html
-          mountPath: /usr/share/nginx/html
-        - name: nginx-conf-d
-          mountPath: /etc/nginx/conf.d
-        - name: letsencrypt-etc
-          mountPath: /letsencrypt-etc
+        - {mountPath: /usr/share/nginx/html, name: nginx-html}
+        - {mountPath: /etc/nginx/conf.d, name: nginx-conf-d}
+        - {mountPath: /letsencrypt-etc, name: letsencrypt-etc}
       volumes:
-      - name: nginx-html
-        hostPath:
-          path: /var/mojp/nginx-html
-      - name: nginx-conf-d
-        configMap: {name: "nginx-conf-d"}
-      - name: letsencrypt-etc
-        hostPath:
-          path: /var/mojp/letsencrypt-etc
+      - hostPath: {path: /var/mojp/nginx-html}
+        name: nginx-html
+      - configMap: {name: nginx-conf-d}
+        name: nginx-conf-d
+      - hostPath: {path: /var/mojp/letsencrypt-etc}
+        name: letsencrypt-etc
 ---
 apiVersion: v1
 kind: Service
-metadata: {name: "nginx"}
+metadata: {name: nginx}
 spec:
+  ports:
+  - {name: '80', port: 80}
+  - {name: '443', port: 443}
+  selector: {app: nginx}
   type: LoadBalancer
-  selector: {app: "nginx"}
-  ports: [{name: "80", port: 80}, {name: "443", port: 443}]

@@ -10,3 +10,7 @@ You need to have the gcloud console installed and authenticated.
 
 * We use the private google container registry - because it builds images faster
 * Image names use the git commit sha - that way you know which version is deployed
+
+## Continuous Deployment
+
+* Travis applies the k8s configurations on every push to master branch

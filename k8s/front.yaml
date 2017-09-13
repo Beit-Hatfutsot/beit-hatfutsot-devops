@@ -1,24 +1,29 @@
 apiVersion: apps/v1beta1
 kind: Deployment
-metadata: {name: "front"}
+metadata: {name: front}
 spec:
   replicas: 1
   template:
-    metadata: {labels: {app: "front"}}
+    metadata:
+      labels: {app: front}
     spec:
       containers:
-      - name: front
-        # dbs-front draft release 0.14.1
-        image: gcr.io/bh-org-01/mojp-dbs-front:0fc24279f06f61bbf09157b33a29f2ac1f4fd2cd
-        ports: [{containerPort: 80}]
-        resources: {requests: {cpu: "20m"}}
-        # each secret's key will be a filename under /etc/bhs
-        volumeMounts: [{name: "etc-bhs", mountPath: "/etc/bhs", readOnly: true}]
-      volumes: [{name: "etc-bhs", secret: {secretName: "etc-bhs"}}]
+      - image: gcr.io/bh-org-01/mojp-dbs-front:0fc24279f06f61bbf09157b33a29f2ac1f4fd2cd
+        name: front
+        ports:
+        - {containerPort: 80}
+        resources:
+          requests: {cpu: 20m}
+        volumeMounts:
+        - {mountPath: /etc/bhs, name: etc-bhs, readOnly: true}
+      volumes:
+      - name: etc-bhs
+        secret: {secretName: etc-bhs}
 ---
 apiVersion: v1
 kind: Service
-metadata: {name: "front"}
+metadata: {name: front}
 spec:
-  selector: {app: "front"}
-  ports: [{name: "80", port: 80}]
+  ports:
+  - {name: '80', port: 80}
+  selector: {app: front}
