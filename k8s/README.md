@@ -13,4 +13,7 @@ You need to have the gcloud console installed and authenticated.
 
 ## Continuous Deployment
 
-* Travis applies the k8s configurations on every push to master branch
+Using travis:
+
+* dbs-back and dbs-front repositories update the k8s configured image in this repo
+* every update to this repo applies all the configurations to the cluster
