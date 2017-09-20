@@ -8,7 +8,7 @@ spec:
       labels: {app: front}
     spec:
       containers:
-      - image: gcr.io/bh-org-01/mojp-dbs-front:375e9865c843ee65b931153bb04ea79aaa62064d
+      - image: gcr.io/bh-org-01/mojp-dbs-front:5336c2c5f56ecc3e2052a4ba8947a89d5a788485
         name: front
         ports:
         - {containerPort: 80}
