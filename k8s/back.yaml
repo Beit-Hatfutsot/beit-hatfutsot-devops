@@ -8,7 +8,7 @@ spec:
       labels: {app: back}
     spec:
       containers:
-      - image: gcr.io/bh-org-01/mojp-dbs-back:c13962b08fd950cd4ae1ed44622e765d0d0e844b
+      - image: gcr.io/bh-org-01/mojp-dbs-back:104b9eb86703221e2440082ae253b6521c9c9f91
         name: back
         ports:
         - {containerPort: 80}
