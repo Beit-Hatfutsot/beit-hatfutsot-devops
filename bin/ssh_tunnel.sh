@@ -32,5 +32,5 @@ else
     echo "starting ssh tunnel for ${ENVIRONMENT_NAME} ${APP}"
     echo "service will be available at:"
     echo "  http://localhost:${LOCAL_PORT}"
-    gcloud compute ssh "${GCLOUD_HOST}" -- -L "${LOCAL_PORT}:localhost:${REMOTE_PORT}" -nN
+    gcloud --project bh-org-01 compute ssh --zone europe-west1-b "${GCLOUD_HOST}" -- -L "${LOCAL_PORT}:localhost:${REMOTE_PORT}" -nN
 fi
