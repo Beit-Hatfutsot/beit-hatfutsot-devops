@@ -20,6 +20,8 @@ spec:
       labels:
         app: minio
     spec:
+      nodeSelector:
+        cloud.google.com/gke-nodepool: pool-2
       containers:
       - name: minio
         image: minio/minio
