@@ -9,16 +9,16 @@ spec:
     spec:
       nodeSelector:
         cloud.google.com/gke-nodepool: pool-3
-      affinity:
-        # nginx must be on the same node as let's encrypt - as they are using shared host path to share files
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values: ["letsencrypt"]
-            topologyKey: "kubernetes.io/hostname"
+#      affinity:
+#        # nginx must be on the same node as let's encrypt - as they are using shared host path to share files
+#        podAffinity:
+#          requiredDuringSchedulingIgnoredDuringExecution:
+#          - labelSelector:
+#              matchExpressions:
+#              - key: app
+#                operator: In
+#                values: ["letsencrypt"]
+#            topologyKey: "kubernetes.io/hostname"
       containers:
       - image: gcr.io/bh-org-01/mojp-dbs-nginx:a6a285fd95b994774aed64bdb4330ce5aee7d1b6
         name: nginx
