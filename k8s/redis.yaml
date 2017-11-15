@@ -7,7 +7,7 @@ spec:
     metadata: {labels: {app: "redis"}}
     spec:
       nodeSelector:
-        cloud.google.com/gke-nodepool: pool-2
+        cloud.google.com/gke-nodepool: pool-3
       containers:
       - name: redis
         image: redis

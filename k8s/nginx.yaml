@@ -8,7 +8,7 @@ spec:
       labels: {app: nginx}
     spec:
       nodeSelector:
-        cloud.google.com/gke-nodepool: pool-2
+        cloud.google.com/gke-nodepool: pool-3
       affinity:
         # nginx must be on the same node as let's encrypt - as they are using shared host path to share files
         podAffinity:

@@ -8,7 +8,7 @@ spec:
       labels: {app: front}
     spec:
       nodeSelector:
-        cloud.google.com/gke-nodepool: pool-2
+        cloud.google.com/gke-nodepool: pool-3
       containers:
       - image: gcr.io/bh-org-01/mojp-dbs-front:5b1030d34e77e60db1b8384a3b68f690de5a4a9c
         name: front

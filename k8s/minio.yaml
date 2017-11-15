@@ -21,7 +21,7 @@ spec:
         app: minio
     spec:
       nodeSelector:
-        cloud.google.com/gke-nodepool: pool-2
+        cloud.google.com/gke-nodepool: pool-3
       containers:
       - name: minio
         image: minio/minio

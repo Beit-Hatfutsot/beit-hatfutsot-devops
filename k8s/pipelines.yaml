@@ -21,7 +21,7 @@ spec:
         app: pipelines
     spec:
       nodeSelector:
-        cloud.google.com/gke-nodepool: pool-2
+        cloud.google.com/gke-nodepool: pool-3
       containers:
       - name: pipelines
         image: gcr.io/bh-org-01/orihoch-dbs-back-pipelines:f36618e2fdb61813ef0fb473bd85d1f11437ee3b

@@ -8,7 +8,7 @@ spec:
       labels: {app: back}
     spec:
       nodeSelector:
-        cloud.google.com/gke-nodepool: pool-2
+        cloud.google.com/gke-nodepool: pool-3
       containers:
       - image: gcr.io/bh-org-01/mojp-dbs-back:104b9eb86703221e2440082ae253b6521c9c9f91
         name: back
