@@ -7,10 +7,8 @@ spec:
     metadata:
       labels: {app: back}
     spec:
-      nodeSelector:
-        cloud.google.com/gke-nodepool: pool-3
       containers:
-      - image: gcr.io/bh-org-01/mojp-dbs-back:104b9eb86703221e2440082ae253b6521c9c9f91
+      - image: gcr.io/bh-org-01/mojp-dbs-back:f4c5a0c0b7c0d77faa8c07466f3fd57f8b7f0786
         name: back
         ports:
         - {containerPort: 80}
@@ -19,6 +17,7 @@ spec:
           requests: {cpu: 20m}
         volumeMounts:
         - {mountPath: /etc/bhs, name: etc-bhs, readOnly: true}
+      nodeSelector: {cloud.google.com/gke-nodepool: pool-3}
       volumes:
       - name: etc-bhs
         secret: {secretName: etc-bhs}
