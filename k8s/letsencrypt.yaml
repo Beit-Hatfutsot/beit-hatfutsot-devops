@@ -9,6 +9,8 @@ spec:
       labels:
         app: letsencrypt
     spec:
+      nodeSelector:
+        cloud.google.com/gke-nodepool: pool-2
       containers:
       - name: letsencrypt
         # https://github.com/OriHoch/datapackage-pipelines-plus-plus/tree/master/devops/letsencrypt
