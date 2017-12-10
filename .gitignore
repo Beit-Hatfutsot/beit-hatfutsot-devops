@@ -89,6 +89,3 @@ ENV/
 .ropeproject
 
 /.idea
-app_server.yaml
-front-nginx-prerender.conf
-secrets.env

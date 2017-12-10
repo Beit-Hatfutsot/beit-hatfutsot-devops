@@ -1,6 +1,0 @@
-language: bash
-cache:
-  directories:
-  - "$HOME/google-cloud-sdk/"
-script:
-- bin/travis_script.sh
